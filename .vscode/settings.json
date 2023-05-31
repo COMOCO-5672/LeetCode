@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.html": "html",
-        "*.wsd": "plantuml",
-        "*.uml": "plantuml",
-        "*.qss": "css",
-        "unordered_map": "cpp"
-    }
-}
