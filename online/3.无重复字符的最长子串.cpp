@@ -6,40 +6,32 @@
 
 // @lc code=start
 
+#include <algorithm>
+#include <set>
 #include <string>
-#include <unordered_map>
 
 class Solution {
 public:
-  int lengthOfLongestSubstring(std::string s) { 
-    int length = s.size();
-    int i = 0;
-
-    int maxLen = 0;
-    int cacheLen = 0;
-    std::unordered_map<std::string, int> map;
-
-    while (i < length)
-    {
-      auto a = s.at(i);
-      i++;
-      std::string m(1, a);
-      if (map.find(m) == map.end())
-      {
-        map.insert(std::pair(m, 0));
-        cacheLen++;
-        continue;
-      }
-
-      if(cacheLen > maxLen)
-      {
-        maxLen = cacheLen;
-      }
-      map.clear();
-      cacheLen=0;
+  int lengthOfLongestSubstring(std::string s) {
+    if (s.empty()) {
+      return 0;
     }
-    return maxLen;
+
+    int start = 0, end = 1; // 最长子串的下标
+    int ret = 1;            // 最长子串的长度
+    std::set<char> a;       // 判断是否出现重复字符
+
+    a.insert(s[start]);
+
+    while (end < s.length()) {
+      if (a.find(s[end]) != a.end())
+        a.erase(s[start++]);
+      else {
+        a.insert(s[end++]);
+        ret = std::max(ret, end - start);
+      }
     }
+    return ret;
+  }
 };
 // @lc code=end
-
