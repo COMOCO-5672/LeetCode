@@ -7,6 +7,7 @@
 // @lc code=start
 
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 class Solution {
@@ -44,4 +45,15 @@ public:
     return ans;
   }
 };
+
+// int main() {
+//   Solution so;
+//   std::vector<int> m = {-1, 0, 1, 2, -1, -4};
+//   auto sum_tree = so.threeSum(m);
+//   for (auto &it : sum_tree) {
+//     std::cout << *it << "\r\n" < std::endl;
+//   }
+//   return 0;
+// }
+
 // @lc code=end
