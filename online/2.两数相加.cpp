@@ -5,19 +5,25 @@
  */
 
 // @lc code=start
+
+#include <iostream>
+#include <vector>
+
 /**
+ *
  * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+ * */
+struct ListNode {
+  int val;
+  ListNode *next;
+  ListNode() : val(0), next(nullptr) {}
+  ListNode(int x) : val(x), next(nullptr) {}
+  ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+  ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
 
     ListNode *dummy = new ListNode();
     int carry = 0;
@@ -31,7 +37,14 @@ public:
       l2 = l2 ? l2->next : nullptr;
     }
     return dummy->next;
-    }
+  }
 };
-// @lc code=end
 
+// int main() {
+//   std::vector<int> l1 = {2, 4, 3}, l2 = {5, 6, 4};
+//   Solution solu;
+//   solu.addTwoNumbers(l1, l2);
+//   return 0;
+// }
+
+// @lc code=end
