@@ -5,9 +5,24 @@
  */
 
 // @lc code=start
+#include <vector>
 class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) {
+    int removeDuplicates(std::vector<int>& nums) {
+
+        int index = 1;
+        int length  = nums.size();
+
+        for (int i = 1; i < length; ++i)
+        {
+            if(nums[i] != nums[i-1])
+            {
+                nums[index] = nums[i];
+                ++index;
+            }
+        }
+
+        return index;
 
     }
 };
