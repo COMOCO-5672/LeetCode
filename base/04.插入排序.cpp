@@ -2,6 +2,8 @@
 
 // 从头开始，拿当前值跟之前的数据进行比对，当遇到比自己小的数停下来
 
+// 时间复杂度O(n^2)
+// 空间福再度O(1)
 void insertsort(int a[], int n) {
   for (int i = 0; i < n; i++) {
     for (int j = i; j - 1 >= 0; j--) {
