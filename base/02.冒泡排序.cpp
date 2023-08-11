@@ -1,5 +1,8 @@
 #include <iostream>
+// 时间复杂度O(n^2)
+// 空间复杂度O(1)
 
+// 冒泡排序是找到最大(最小)的冒泡到后面
 void bubblesort(int list[], int n) {
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n - i - 1; j++) {
