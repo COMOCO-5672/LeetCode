@@ -37,6 +37,7 @@ int main() {
 	//生成树
 	for (i = 2; i <=9; i++) {
 		temp = ar_tree[i - 2];
+        cout << "temp:" << temp << " i:" << i <<endl;
 		tree[temp].push_back(i);//表示第i个节点为第temp个节点的子节点
 	}
 	//BFS
