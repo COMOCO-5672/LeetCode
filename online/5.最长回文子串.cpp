@@ -9,57 +9,54 @@
 #include <string>
 #include <vector>
 
-//int dp[1010][1010];
+using namespace std;
 
 class Solution {
 public:
   std::string longestPalindrome(std::string s) {
-    // int len = s.size();
-    // if (len == 0 || len == 1)
-    //   return s;
-    // int start = 0; // 回文串起始位置
-    // int max = 1;   // 回文串最大长度
-    // std::vector<std::vector<int>> dp(len,
-    //                                  std::vector<int>(len)); // 定义二维动态数组
-    // for (int i = 0; i < len; i++)                            // 初始化状态
-    // {
-    //   dp[i][i] = 1;
-    //   if (i < len - 1 && s[i] == s[i + 1]) {
-    //     dp[i][i + 1] = 1;
-    //     max = 2;
-    //     start = i;
-    //   }
-    // }
-    // for (int l = 3; l <= len;
-    //      l++) // l表示检索的子串长度，等于3表示先检索长度为3的子串
-    // {
-    //   for (int i = 0; i + l - 1 < len; i++) {
-    //     int j = l + i - 1;                         // 终止字符位置
-    //     if (s[i] == s[j] && dp[i + 1][j - 1] == 1) // 状态转移
-    //     {
-    //       dp[i][j] = 1;
-    //       start = i;
-    //       max = l;
-    //     }
-    //   }
-    // }
-    // return s.substr(start, max); // 获取最长回文子串
-
-    int n = s.size(), ans = 0;
-    std::vector<std::vector<bool>> dp(n, std::vector<bool>(n));
-
-    for (int i = 0; i < n; i++)
-    {
-      for (int j = i; j>=0; j--)
-      {
-        dp[j][i] = (s[i] == s[j] && (i-j <= 2 || dp[j+1][i-1]));
-        if()
-        {
-          
+    int n = s.size();
+        if (n < 2) {
+            return s;
         }
-      }
-    }
-    
+
+        int maxLen = 1;
+        int begin = 0;
+        // dp[i][j] 表示 s[i..j] 是否是回文串
+        vector<vector<int>> dp(n, vector<int>(n));
+        // 初始化：所有长度为 1 的子串都是回文串
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = true;
+        }
+        // 递推开始
+        // 先枚举子串长度
+        for (int L = 2; L <= n; L++) {
+            // 枚举左边界，左边界的上限设置可以宽松一些
+            for (int i = 0; i < n; i++) {
+                // 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得
+                int j = L + i - 1;
+                // 如果右边界越界，就可以退出当前循环
+                if (j >= n) {
+                    break;
+                }
+
+                if (s[i] != s[j]) {
+                    dp[i][j] = false;
+                } else {
+                    if (j - i < 3) {
+                        dp[i][j] = true;
+                    } else {
+                        dp[i][j] = dp[i + 1][j - 1];
+                    }
+                }
+
+                // 只要 dp[i][L] == true 成立，就表示子串 s[i..L] 是回文，此时记录回文长度和起始位置
+                if (dp[i][j] && j - i + 1 > maxLen) {
+                    maxLen = j - i + 1;
+                    begin = i;
+                }
+            }
+        }
+        return s.substr(begin, maxLen);
 
   }
 };
