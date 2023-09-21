@@ -8,12 +8,17 @@
 
 #include <string>
 #include <vector>
-
-using namespace std;
+#include <iostream>
 
 class Solution {
 public:
   std::string longestPalindrome(std::string s) {
+
+    // 动态规划
+    // 状态：dp[i][j]描述的s(i) == s(j) 是否相等，并更新二维表
+    // 状态转移方程：dp[i][j] = (s[i] == s[j]) and dp[i-1][j-1]
+    // 边界：j-1 - (i+1) + 1 < 1 + 1 时停止，因为两个位置的值一定是大于1的 所以进行加一，整理得 j - i < 3
+    // 初始化：dp[i][i] = true;
     int n = s.size();
         if (n < 2) {
             return s;
@@ -22,7 +27,7 @@ public:
         int maxLen = 1;
         int begin = 0;
         // dp[i][j] 表示 s[i..j] 是否是回文串
-        vector<vector<int>> dp(n, vector<int>(n));
+        std::vector<std::vector<int>> dp(n, std::vector<int>(n));
         // 初始化：所有长度为 1 的子串都是回文串
         for (int i = 0; i < n; i++) {
             dp[i][i] = true;
@@ -34,8 +39,10 @@ public:
             for (int i = 0; i < n; i++) {
                 // 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得
                 int j = L + i - 1;
+                std::cout << "j:" << j << "L:" << L << "i:" << i << std::endl;
                 // 如果右边界越界，就可以退出当前循环
                 if (j >= n) {
+                  std::cout << "over" << std::endl;
                     break;
                 }
 
@@ -60,4 +67,17 @@ public:
 
   }
 };
+
+#if 1
+
+int main()
+{
+  Solution sol;
+  std::string str = sol.longestPalindrome("aaadddadddd");
+  std::cout << str << std::endl;
+  return 0;
+}
+
+#endif
+
 // @lc code=end
