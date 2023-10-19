@@ -36,7 +36,7 @@ public:
 int main()
 {
     Solution sol;
-    vector<int> a = {2,3,5};
+    vector<int> a = {1,2,5};
     int amount = 11;
     auto ret = sol.coinChange(a, amount);
 
