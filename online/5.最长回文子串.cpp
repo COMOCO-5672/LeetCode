@@ -12,6 +12,33 @@
 
 class Solution {
 public:
+
+    std::string longestPalindrome2(std::string s)
+    {
+        std::string v="";
+        std::vector<std::vector<bool>>dp(s.size(),std::vector<bool>(s.size(),false));
+        for(int i=s.size()-1;i>=0;i--){
+            for(int j=i;j<s.size();j++){
+                if(i==j){//当i和j相等时为true
+                    dp[i][j]=true;
+                    if(j-i+1>v.size())
+                        v=s.substr(i,j-i+1);
+                }
+                else if(s[i]==s[j]&&j-i==1){//当i和j相邻且两个元素相等时为true
+                    dp[i][j]=true;
+                    if(j-i+1>v.size())
+                        v=s.substr(i,j-i+1);
+                }
+                else if(s[i]==s[j]&&dp[i+1][j-1]){//当i和j对应的两个元素相等且中间子串为回文串时为true
+                    dp[i][j]=true;
+                    if(j-i+1>v.size())
+                        v=s.substr(i,j-i+1);
+                }
+            }
+        }
+        return v;
+    }
+
   std::string longestPalindrome(std::string s) {
 
     // 动态规划
@@ -74,7 +101,7 @@ int main()
 {
   Solution sol;
   std::string str = sol.longestPalindrome("aaadddadddd");
-  std::cout << str << std::endl;
+  std::cout << "str:" << str << std::endl;
   return 0;
 }
 
