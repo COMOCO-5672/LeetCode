@@ -15,6 +15,13 @@ public:
     bool checkInclusion(std::string t, std::string s) {
         std::unordered_map<char, int> need, window;
         for (char c : t) need[c]++;
+
+        for (auto a :need)
+        {
+            std::cout << "a.fr" << a.first << ",";
+            std::cout << "a.se" << a.second << std::endl;
+        }
+
         int left = 0, right = 0;
         int valid = 0;
         while (right < s.size()) {
@@ -59,7 +66,7 @@ Solution::~Solution()
 int main()
 {
     Solution sol;
-    bool is_find = sol.checkInclusion("eidbaooo", "ab");
-    std::cout << is_find ? "true" : "false" << std::endl;
+    bool is_find = sol.checkInclusion("ab", "eidabooo");
+    std::cout << is_find << std::endl;
     return 0;
 }
