@@ -2,6 +2,7 @@
 #include <string>
 #include <queue>
 #include <set>
+#include <unordered_set>
 
 int n;
 
@@ -26,53 +27,65 @@ std::string minusOne(std::string code, int j)
     return code;
 }
 
-int BFS(std::string start, std::string target, std::string deadcodes[])
+int BFS(std::vector<std::string>& deadends, std::string target)
 {
-    std::queue<std::string> q;
-    std::set<std::string> visited;
-
-    q.push(start);
-    for (int i = 0; i < n; ++i) {
-        visited.insert(deadcodes[i]);
-    }
-
-    int step = 0;
-    while (!q.empty()) {
-        int sz = q.size();
-        for (int i = 0; i < sz; ++i) {
-            std::string cur = q.front();
-            q.pop();
-
-            if(cur == target)
-                return step;
-
-            for (int i = 0; i < 4; ++i) {
-                std::string up = plusOne(cur, i);
-
-                if (!visited.count(up) && !visited.count(up)) {
-                    q.push(up);
-                    visited.insert(up);
+        std::queue<std::string> q;
+        std::unordered_set<std::string> version;
+        std::unordered_set<std::string> dead;
+ 
+        for (std::string str : deadends)  dead.insert(str);
+ 
+        //把初始密码添加到队列中
+        q.push("0000");
+        version.insert("0000");
+ 
+        int depth = 0;
+ 
+        while (!q.empty())
+        {
+            int len = q.size();
+            for (int i = 0; i < len; i++)
+            {
+                std::string cur = q.front();
+ 
+                q.pop();            //使用队列中第一个元素后，立刻把其删除，不要放在后面删除，以防出现 bug
+ 
+                //判断是否是正确密码
+                if (dead.find(cur) != dead.end()) continue;
+                if (cur == target) return depth;
+                //if (!cur.compare(target)) return depth;
+ 
+                for (int j = 0; j < 4; j++)
+                {
+                    //转动一次密码并添加到队列中
+                    std::string up = plusOne(cur, j);
+ 
+                    //判断是否是回头路
+                    if (version.find(up) == version.end())
+                    {
+                        q.push(up);
+                        version.insert(up);
+                    }
+                    
+                    std::string down = minusOne(cur, j);
+                    if (version.find(down) == version.end())
+                    {
+                        q.push(down);
+                        version.insert(down);
+                    }
                 }
-
-                std::string down = minusOne(cur, i);
-
-                if (!visited.count(down) && !visited.count(down)) {
-                    q.push(down);
-                    visited.insert(down);
-                }
+ 
+                
             }
+            depth++;
         }
-        ++step;
-        std::cout << "step:" << step << std::endl;
-    }
-    return -1;
+        return -1;
 }
 
 int main()
 {
-    std::string start = "0000";
-    std::string target = "1239";
-    std::string deadcodes[2] = {"1111", "2222"};
-    std::cout << BFS(start, target, deadcodes);
+    std::string a = "1112";
+    std::vector<std::string> deadcodes = {"1111", "2222"};
+    std::cout << BFS(deadcodes, a);
     return 0;
 }
