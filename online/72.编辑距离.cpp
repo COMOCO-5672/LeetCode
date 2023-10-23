@@ -18,12 +18,12 @@ public:
 
         for (int i = 1; i <= n; ++i)
         {
-            dp[0][i] = dp[0][i - 1] + 1;
+            dp[0][i] = i;
         }
 
         for (int i = 1; i <=m; ++i)
         {
-            dp[i][0] = dp[i-1][0] + 1;
+            dp[i][0] = i;
         }
 
         std::cout << "size1:" << dp.size();
@@ -39,7 +39,7 @@ public:
                 }
                 else 
                 {
-                    dp[i][j] = std::min(std::min(dp[i-1][j-1], dp[i-1][j]), dp[i][j-1] + 1);
+                    dp[i][j] = std::min(std::min(dp[i-1][j-1], dp[i-1][j]), dp[i][j-1])+ 1;
                 }
             }
 
