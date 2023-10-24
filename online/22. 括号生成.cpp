@@ -22,10 +22,12 @@ public:
         }
 
         if (left < n) {
+            std::cout << "left:" << left << std::endl;
             dfs(ans, cur + '(', left + 1, right, n);
         }
 
         if (right < n) {
+            std::cout << "right:" << right << std::endl;
             dfs(ans, cur + ')', left, right + 1, n);
         }
     }
