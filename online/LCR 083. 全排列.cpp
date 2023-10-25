@@ -6,10 +6,8 @@ using namespace std;
 
 class Solution
 {
-public:
-    Solution(/* args */);
-    ~Solution();
-
+private:
+    vector<vector<int>> res;
     void dfs(vector<int> nums, int x)
     {
         if (x == nums.size() - 1)
@@ -26,9 +24,13 @@ public:
         }
     }
 
+public:
+    Solution(/* args */);
+    ~Solution();
+
     std::vector<std::vector<int>> permute(std::vector<int>& nums) {
         dfs(nums, 0);
-        return path_ret;
+        return res;
     }
 
 };
