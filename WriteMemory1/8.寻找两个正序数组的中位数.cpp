@@ -17,7 +17,7 @@ public:
 
 		int i = 0, j = 0, k = 0;
 		// 合并两个正序数组
-		while (i < nums1.size && j < nums2.size())
+		while (i < nums1.size() && j < nums2.size())
 		{
 			a[k++] = nums1[i] < nums2[j] ? nums1[i++] : nums2[j++];
 		}
