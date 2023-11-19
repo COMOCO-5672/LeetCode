@@ -14,9 +14,9 @@ public:
         }
         int *tmp = (int*) malloc(sizeof(int) * numsSize);
 
-        memcpy(tmp, &nums + numsSize - k, sizeof(int) * k);
-        memcpy(tmp + k, &nums, sizeof(int) * (numsSize - k));
-        memcpy(&nums, tmp, sizeof(int) * numsSize);
+        memcpy(tmp, &nums[0] + numsSize - k, sizeof(int) * k);
+        memcpy(tmp + k, &nums[0], sizeof(int) * (numsSize - k));
+        memcpy(&nums[0], tmp, sizeof(int) * numsSize);
         free(tmp);
         tmp = NULL;
     }
@@ -29,9 +29,11 @@ int main()
     std::vector<int> nums = {1,2,3,4,5,6,7};
     int k = 3;
     sol.rotate(nums, k);
-    for (auto num : nums)
+
+    for (int i = 0; i < nums.size(); i++)
     {
-        std::cout << num << std::endl;
+        std::cout << nums.at(i) << std::endl;
     }
+
     return 0;
 }
