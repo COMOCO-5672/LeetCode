@@ -20,6 +20,17 @@ public:
         free(tmp);
         tmp = NULL;
     }
+
+    // 第二种， 时间复杂度o(1)
+    void rotate2(vector<int>& nums, int k)
+    {
+        int n = nums.size();
+        k %= n;
+        k = n - k;
+        reverse(nums.begin(),nums.begin() + k);
+        reverse(nums.begin()+k,nums.end());
+        reverse(nums.begin(),nums.end());
+    }
 };
 
 
