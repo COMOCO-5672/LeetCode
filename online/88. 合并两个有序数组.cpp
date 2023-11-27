@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    int i = m - 1;  // nums1 的末尾位置
+    int j = n - 1;  // nums2 的末尾位置
+    int k = m + n - 1;  // 合并后数组的末尾位置
+
+    while (i >= 0 && j >= 0) {
+        if (nums1[i] > nums2[j]) {
+            nums1[k] = nums1[i];
+            --i;
+        } else {
+            nums1[k] = nums2[j];
+            --j;
+        }
+        --k;
+    }
+
+    // 如果 nums2 中还有剩余元素，将其复制到 nums1 的前面
+    while (j >= 0) {
+        nums1[k] = nums2[j];
+        --j;
+        --k;
+    }
+}
+
+int main() {
+    vector<int> nums1 = {1, 2, 3, 0, 0, 0};
+    int m = 3;
+    vector<int> nums2 = {2, 5, 6};
+    int n = 3;
+
+    merge(nums1, m, nums2, n);
+
+    cout << "Merged array: ";
+    for (int num : nums1) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
