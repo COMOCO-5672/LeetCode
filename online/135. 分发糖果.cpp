@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <numeric>
 #include <algorithm>
 
 using namespace std;
@@ -36,5 +37,10 @@ public:
 
 int main()
 {
+    Solution sol;
+    vector<int> nums = {2, 3, 1, 2, 4, 3};
+
+    auto result = sol.candy(nums); 
+    cout << "Minimum length of subarray: " << result << endl;
     return 0;
 }
