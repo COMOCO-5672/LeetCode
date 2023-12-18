@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// 贪心法，遍历整个节点，如果遇见油量小于里程的，重新计算位置
 int canComplateCircuit(std::vector<int> &gas, std::vector<int> &cost) {
   int totalGas = 0;
   int currentGas = 0;
