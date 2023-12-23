@@ -3,6 +3,12 @@
 
 using namespace std;
 
+
+// 扫描矩阵： 遍历整个矩阵，如果某个元素为0，就在第一行和第一列的对应位置
+// 做标记（因为含的行和列都要被置零）。
+// 更新矩阵： 遍历第一行和第一列，根据标记，将对应的行和列置零。
+// 如果需要，将第一行和第一列置零： 使用两个布尔变量 firstRowZero 和 firstColZero 来检查是否需要将第一行和第一列置零。
+
 void setZeroes(std::vector<std::vector<int>> &matrix) {
   int m = matrix.size();
   int n = matrix[0].size();
