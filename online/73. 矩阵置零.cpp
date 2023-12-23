@@ -14,16 +14,14 @@ void setZeroes(std::vector<std::vector<int>> &matrix) {
   // 遍历矩阵，用第一行和第一列来标记需要置零的行和列
   for (int i = 0; i < m; ++i) {
     for (int j = 0; j < n; ++j) {
-      if (i == 0) {
-        firstRowZero = true;
+      if (matrix[i][j] == 0) {
+        if (i == 0)
+          firstRowZero = true;
+        if (j == 0)
+          firstColZero = true;
+        matrix[i][0] = 0;
+        matrix[0][j] = 0;
       }
-
-      if (j == 0) {
-        firstColZero = true;
-      }
-
-      matrix[i][0] = 0;
-      matrix[0][j] = 0;
     }
   }
 
