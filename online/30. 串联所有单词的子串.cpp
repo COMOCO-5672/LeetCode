@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// 滑动窗口
+
 std::vector<int> findSubString(std::string s, std::vector<std::string> &words) {
   std::vector<int> result;
 

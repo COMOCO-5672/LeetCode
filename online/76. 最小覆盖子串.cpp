@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// 滑动窗口
+
 std::string minWindow(std::string s, std::string t) {
   std::unordered_map<char, int> targetFreq, windowFreq;
 
