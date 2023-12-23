@@ -32,4 +32,17 @@ bool isIsomorphic(string s, string t) {
   return true;
 }
 
-int main() { return 0; }
+int main() {
+  string s1 = "egg";
+  string t1 = "add";
+  cout << isIsomorphic(s1, t1) << endl; // 输出 true
+
+  string s2 = "foo";
+  string t2 = "bar";
+  cout << isIsomorphic(s2, t2) << endl; // 输出 false
+
+  string s3 = "paper";
+  string t3 = "title";
+  cout << isIsomorphic(s3, t3) << endl; // 输出 true
+  return 0;
+}
