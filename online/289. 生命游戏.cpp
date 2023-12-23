@@ -33,9 +33,11 @@ void gameOfLife(std::vector<std::vector<int>> &board) {
             continue; // 跳过当前细胞
           }
 
+          // 计算相邻细胞的坐标
           int ni = i + x;
           int nj = j + y;
 
+          // 检查相邻细胞的状态
           if (ni >= 0 && ni < m && nj >= 0 && nj < n &&
               (board[ni][nj] == 1 || board[ni][nj] == 2)) {
             liveNeighbors++;
@@ -43,6 +45,7 @@ void gameOfLife(std::vector<std::vector<int>> &board) {
         }
       }
 
+      // 根据规则更新细胞的状态
       if (board[i][j] == 1 && (liveNeighbors < 2 || liveNeighbors > 3)) {
         board[i][j] = 2;
       } else if (board[i][j] == 0 && liveNeighbors == 3) {
@@ -51,6 +54,7 @@ void gameOfLife(std::vector<std::vector<int>> &board) {
     }
   }
 
+  // 将2和3还原成0和1
   for (int i = 0; i < m; ++i) {
     for (int j = 0; j < n; ++j) {
       if (board[i][j] == 2) {
