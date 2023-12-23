@@ -40,6 +40,7 @@ std::vector<int> spiralOrder(std::vector<std::vector<int>> &matrix) {
       left++;
     }
   }
+  return result;
 }
 
 int main() {
