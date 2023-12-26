@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// 可以使用哈希表来存储每个数字的索引，当遍历数组时，判断当前数字是否已经在哈希表中，
+// 并且其索引与当前索引的差是否不超过 k。
 bool containsNearbyDuplicate(vector<int>& nums, int k) {
     unordered_map<int, int> numIndexMap;
 
