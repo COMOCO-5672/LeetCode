@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// WARNNING: 注意：这道题运行结果是错误的
 std::vector<std::vector<std::string>>
 groupAnagrams(std::vector<std::string> &strs) {
   std::vector<std::vector<std::string>> result;
