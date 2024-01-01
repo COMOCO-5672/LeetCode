@@ -24,9 +24,9 @@ int evalRPN(vector<string> &tokens) {
         numStack.push(num1 * num2);
       } else if (token == "/") {
         numStack.push(num1 / num2);
-      } else {
-        numStack.push(stoi(token));
       }
+    } else {
+      numStack.push(stoi(token));
     }
   }
 
