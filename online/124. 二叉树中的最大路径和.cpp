@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// maxPathSum 函数采用递归的方式，在每个节点处计算包含该节点的最大路径和，
+// 同时更新全局的最大路径和
 struct TreeNode {
   int val;
   TreeNode *left;
