@@ -30,7 +30,7 @@ int getMinimumDifference(TreeNode *root) {
   inOrderTraversal(root, vals);
 
   int minDiff = INT_MAX;
-  for (int i = 0; i < vals.size(); ++i) {
+  for (int i = 1; i < vals.size(); ++i) {
     minDiff = std::min(minDiff, vals[i] - vals[i - 1]);
   }
 
