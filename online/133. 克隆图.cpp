@@ -5,6 +5,9 @@
 
 using namespace std;
 
+// cloneGraph
+// 函数用于深度优先搜索，创建节点的克隆，并递归克隆邻居节点。deleteGraph
+// 函数用于释放图的内存
 class Node {
 public:
   int val;
