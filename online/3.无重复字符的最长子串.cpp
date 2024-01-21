@@ -19,7 +19,7 @@ public:
 
     int start = 0, end = 1; // 最长子串的下标
     int ret = 1;            // 最长子串的长度
-    std::set<char> a;       // 判断是否出现重复字符
+    std::set<char> a;       // 判断是否出现重复字符， 这个set的底层是hash表，是一个有序容器
 
     a.insert(s[start]);
 
