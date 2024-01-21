@@ -25,6 +25,7 @@ class Solution {
 public:
   ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
 
+    // 保存其实指针位置
     ListNode *dummy = new ListNode();
     int carry = 0;
     ListNode *cur = dummy;
