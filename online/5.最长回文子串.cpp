@@ -10,43 +10,45 @@
 #include <vector>
 #include <iostream>
 
-class Solution {
+class Solution
+{
 public:
 
     std::string longestPalindrome2(std::string s)
     {
-        std::string v="";
-        std::vector<std::vector<bool>>dp(s.size(),std::vector<bool>(s.size(),false));
-        for(int i=s.size()-1;i>=0;i--){
-            for(int j=i;j<s.size();j++){
-                if(i==j){//当i和j相等时为true
-                    dp[i][j]=true;
-                    if(j-i+1>v.size())
-                        v=s.substr(i,j-i+1);
+        std::string v = "";
+        std::vector <std::vector<bool>> dp(s.size(), std::vector<bool>(s.size(), false));
+        for (int i = s.size() - 1; i >= 0; i--) {
+            for (int j = i; j < s.size(); j++) {
+                if (i == j) {//当i和j相等时为true
+                    dp[i][j] = true;
+                    if (j - i + 1 > v.size())
+                        v = s.substr(i, j - i + 1);
                 }
-                else if(s[i]==s[j]&&j-i==1){//当i和j相邻且两个元素相等时为true
-                    dp[i][j]=true;
-                    if(j-i+1>v.size())
-                        v=s.substr(i,j-i+1);
+                else if (s[i] == s[j] && j - i == 1) {//当i和j相邻且两个元素相等时为true
+                    dp[i][j] = true;
+                    if (j - i + 1 > v.size())
+                        v = s.substr(i, j - i + 1);
                 }
-                else if(s[i]==s[j]&&dp[i+1][j-1]){//当i和j对应的两个元素相等且中间子串为回文串时为true
-                    dp[i][j]=true;
-                    if(j-i+1>v.size())
-                        v=s.substr(i,j-i+1);
+                else if (s[i] == s[j] && dp[i + 1][j - 1]) {//当i和j对应的两个元素相等且中间子串为回文串时为true
+                    dp[i][j] = true;
+                    if (j - i + 1 > v.size())
+                        v = s.substr(i, j - i + 1);
                 }
             }
         }
         return v;
     }
 
-  std::string longestPalindrome(std::string s) {
+    std::string longestPalindrome(std::string s)
+    {
 
-    // 动态规划
-    // 状态：dp[i][j]描述的s(i) == s(j) 是否相等，并更新二维表
-    // 状态转移方程：dp[i][j] = (s[i] == s[j]) and dp[i-1][j-1]
-    // 边界：j-1 - (i+1) + 1 < 2 时停止，因为2-0 = 2 但是实际上有三个数，所以要加一
-    // 初始化：dp[i][i] = true;
-    int n = s.size();
+        // 动态规划
+        // 状态：dp[i][j]描述的s(i) == s(j) 是否相等，并更新二维表
+        // 状态转移方程：dp[i][j] = (s[i] == s[j]) and dp[i-1][j-1]
+        // 边界：j-1 - (i+1) + 1 < 2 时停止，因为2-0 = 2 但是实际上有三个数，所以要加一
+        // 初始化：dp[i][i] = true;
+        int n = s.size();
         if (n < 2) {
             return s;
         }
@@ -54,7 +56,7 @@ public:
         int maxLen = 1;
         int begin = 0;
         // dp[i][j] 表示 s[i..j] 是否是回文串
-        std::vector<std::vector<int>> dp(n, std::vector<int>(n));
+        std::vector <std::vector<int>> dp(n, std::vector<int>(n));
         // 初始化：所有长度为 1 的子串都是回文串
         for (int i = 0; i < n; i++) {
             dp[i][i] = true;
@@ -69,16 +71,18 @@ public:
                 std::cout << "j:" << j << "L:" << L << "i:" << i << std::endl;
                 // 如果右边界越界，就可以退出当前循环
                 if (j >= n) {
-                  std::cout << "over" << std::endl;
+                    std::cout << "over" << std::endl;
                     break;
                 }
 
                 if (s[i] != s[j]) {
                     dp[i][j] = false;
-                } else {
+                }
+                else {
                     if (j - i < 3) {
                         dp[i][j] = true;
-                    } else {
+                    }
+                    else {
                         dp[i][j] = dp[i + 1][j - 1];
                     }
                 }
@@ -92,17 +96,17 @@ public:
         }
         return s.substr(begin, maxLen);
 
-  }
+    }
 };
 
 #if 1
 
 int main()
 {
-  Solution sol;
-  std::string str = sol.longestPalindrome("aaadddadddd");
-  std::cout << "str:" << str << std::endl;
-  return 0;
+    Solution sol;
+    std::string str = sol.longestPalindrome("aaadddadddd");
+    std::cout << "str:" << str << std::endl;
+    return 0;
 }
 
 #endif
