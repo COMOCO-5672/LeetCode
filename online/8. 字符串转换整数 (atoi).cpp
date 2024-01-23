@@ -7,7 +7,7 @@ public:
     int myAtoi(string s)
     {
         int res = 0, sign = 1, i = 0, n = s.length();
-        while (s[i++] == ' ')
+        while (s[i++] == ' ');
             i--;                 //跳过空格
             
         if (i < n && (s[i] == '+' || s[i] == '-')) {    //判断符号
