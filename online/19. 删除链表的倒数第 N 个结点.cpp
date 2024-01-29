@@ -34,6 +34,7 @@ ListNode *removeNthFromEnd(ListNode *head, int n) {
     return head;
   }
 
+  // 创建一个节点，将当前节点添加到最左侧，并且快慢指针都指向该位置，然后向后移动
   ListNode *dummy = new ListNode(0);
   dummy->next = head;
 
