@@ -43,14 +43,34 @@
 //
 // 进阶：你可以想出一个时间复杂度小于 O(n²) 的算法吗？ 
 //
-// Related Topics 数组 哈希表 👍 18344 👎 0
+// Related Topics 数组 哈希表 👍 18217 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+
+#include <unordered_map>
+#include <vector>
+
+using namespace std;
+
+class Solution
+{
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        
+    vector<int> twoSum(vector<int> &nums, int target)
+    {
+        std::vector<int> ret;
+        std::unordered_map<int, int> cache;
+        for (int i = 0; i < nums.size(); ++i) {
+            auto find = cache.find(target - nums[i]);
+            if (find != cache.end()) {
+                ret.emplace_back(find->second);
+                ret.emplace_back(i);
+                break;
+            }
+            cache.insert(std::pair(nums[i], i));
+        }
+
+        return ret;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

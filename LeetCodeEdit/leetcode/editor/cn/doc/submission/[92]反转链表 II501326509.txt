@@ -1,0 +1,74 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        int right_size = right - left + 1;
+        int index = 1;
+        ListNode* pHead = head;
+        ListNode* pLast = head;
+        ListNode* tmp_node = head;
+        while (tmp_node != nullptr)
+        {
+            if (index == left - 1)
+            {
+                pHead = tmp_node;
+            }
+
+            if (index == right)
+            {
+                pLast = tmp_node->next;
+                break;
+            }
+
+            tmp_node = tmp_node->next;
+            index++;
+        }
+        ListNode* reverse_end = pHead->next;
+        tmp_node->next = nullptr;
+        ListNode* reverse_head = reverse(pHead->next);
+        if (reverse_head)
+        {
+            pHead->next = reverse_head;
+        }
+
+        if (reverse_end)
+        {
+            reverse_end->next = pLast;
+        }
+        return head;
+    }
+
+    ListNode* reverse(ListNode* head){
+        ListNode* pFast = head;
+        ListNode* pSlow = nullptr;
+
+        while (pFast != nullptr)
+        {
+            auto tmp = pFast;
+            pFast = pFast->next;
+            tmp->next = pSlow;
+            pSlow = tmp;
+        }
+        return pSlow;
+    }
+};
+
+//total_testcases:44
+//total_correct:26
+//input_formatted:[3,5]
+1
+1
+//expected_output:[3,5]
+//code_output:[3]
+//last_testcase:[3,5]
+1
+1
