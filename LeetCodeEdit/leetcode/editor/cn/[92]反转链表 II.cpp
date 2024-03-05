@@ -79,6 +79,8 @@ public:
             prev = curr;
             curr = next;
         }
+
+        // 切换开始节点和结束节点的前后节点
         ListNode* next = end->next;
         end->next = prev;
         start->next = next;
