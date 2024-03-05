@@ -58,6 +58,18 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
 
+        ListNode* pfast = head;
+        ListNode* pslow = nullptr;
+
+        while (pfast)
+        {
+           auto tmp = pfast;
+           pfast = pfast->next;
+           tmp->next = pslow;
+           pslow = tmp;
+        }
+
+        return pslow;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
