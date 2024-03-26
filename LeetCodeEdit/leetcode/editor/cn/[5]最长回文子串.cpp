@@ -32,10 +32,39 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+#include <string>
+#include <vector>
+
 class Solution {
 public:
     string longestPalindrome(string s) {
-
+        std::string v = "";
+        vector<vector<bool>> dp(s.size(),vector<bool>(s.size(),false));
+        for (int i = s.size()-1; i >= 0; i--) {
+            for (int j = i; j < s.size(); j++) {
+                if (i == j) {
+                    dp[i][j] = true;
+                    if (j-i+1 > v.size())
+                    {
+                        v = s.substr(i, j-i+1);
+                    }
+                } else if (s[i] == s[j] && j-i == 1) {
+                    dp[i][j] = true;
+                    if (j-i+1 > v.size())
+                    {
+                        v = s.substr(i, j-i+1);
+                    }
+                } else if (s[i] == s[j] && dp[i+1][j-1]) {
+                    dp[i][j] = true;
+                    if (j-i+1 > v.size())
+                    {
+                        v = s.substr(i, j-i+1);
+                    }
+                }
+            }
+        }
+        return v;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
