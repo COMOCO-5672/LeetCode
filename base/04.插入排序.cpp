@@ -6,8 +6,11 @@
 // 空间福再度O(1)
 void insertsort(int a[], int n) {
   for (int i = 0; i < n; i++) {
+      // 先正向
+      std::cout << "i_index:" << i << "\r\n";
     for (int j = i; j - 1 >= 0; j--) {
-      std::cout << "index:" << j - 1 << "\r\n";
+      std::cout << "   index:j-1:" << j - 1 << "\r\n";
+      // 如果满足条件就逆向
       if (a[j] < a[j - 1]) {
         std::swap(a[j], a[j - 1]);
       } else {
