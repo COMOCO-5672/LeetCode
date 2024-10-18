@@ -1,27 +1,36 @@
 #include <iostream>
-#include <vector>
-#include <queue>
 #include <list>
+#include <queue>
+#include <vector>
 
 struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+  TreeNode() : val(0), left(nullptr), right(nullptr) {}
+  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  TreeNode(int x, TreeNode *left, TreeNode *right)
+      : val(x), left(left), right(right) {}
 };
 
-class Solution
-{
+class Solution {
 private:
-    /* data */
+  /* data */
 public:
-    Solution(/* args */);
-    ~Solution();
+  Solution(/* args */);
+  ~Solution();
 
-    int minDepth(TreeNode* root)
-    {
+  int minDepth(TreeNode *root) {
+    if (!root)
+      return 0;
+    if (!root->left)
+      return 1 + minDepth(root->right);
+    if (!root->right)
+      return 1 + minDepth(root->left);
+    return 1 + min(minDepth(root->left), minDepth(root->right));
+
+#if 0
+
         if (root == nullptr) {
             return 0;
         }
@@ -44,20 +53,12 @@ public:
         }
 
         return 0;
-    }
-
+#endif
+  }
 };
 
-Solution::Solution(/* args */)
-{
-}
+Solution::Solution(/* args */) {}
 
-Solution::~Solution()
-{
-}
+Solution::~Solution() {}
 
-
-int main()
-{
-    return 0;
-}
+int main() { return 0; }
