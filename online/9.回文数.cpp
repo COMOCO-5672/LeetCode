@@ -5,9 +5,12 @@
  */
 
 // @lc code=start
+
+#include <iostream>
 class Solution {
 public:
   bool isPalindrome(int x) {
+#if 0
     if (x < 0)
       return false;
 
@@ -20,6 +23,29 @@ public:
     }
 
     return x == reversedNum;
+#endif
+
+    if (x < 0 || (x != 0 && x % 10 == 0)) {
+      return false;
+    }
+
+    int reversed = 0;
+    while (x > reversed) {
+      reversed = reversed * 10 + x % 10;
+      x /= 10;
+      std::cout <<"reversed:" << reversed << ",x:" << x << std::endl;
+    }
+
+    return x == reversed || x == reversed / 10;
   }
 };
+
+int main()
+{
+    Solution sol;
+    bool ret = sol.isPalindrome(12221);
+    std::cout << "ret:" << ret << std::endl;
+    return 0;
+}
+
 // @lc code=end
