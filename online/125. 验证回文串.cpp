@@ -8,8 +8,21 @@
 
 using namespace std;
 
-bool isPalindrome(string s)
-{
+bool isPalindrome(string s) {
+  int left = 0, right = s.length() - 1;
+  while (left < right) {
+    while (left < right && !isalnum(s[left]))
+      left++;
+    while (left < right && !isalnum(s[right]))
+      right--;
+    if (tolower(s[left]) != tolower(s[right]))
+      return false;
+    left++;
+    right--;
+  }
+  return true;
+
+#if 0
     int len = s.size();
     int i = 0;
 
@@ -42,13 +55,12 @@ bool isPalindrome(string s)
         return false;
     }
     return true;
-
+#endif
 }
 
-int main()
-{
-    std::string str = "A man, a plan, a canal: Panama";
-    auto ret =  isPalindrome(str);
-    std::cout << "return :" << ret << std::endl;
-    return 0;
+int main() {
+  std::string str = "A man, a plan, a canal: Panama";
+  auto ret = isPalindrome(str);
+  std::cout << "return :" << ret << std::endl;
+  return 0;
 }
