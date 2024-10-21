@@ -12,6 +12,27 @@ using namespace std;
 
 class Solution {
 public:
+  // 暴力枚举算法
+  int strStr2(string haystack, string needle) {
+    int len1 = haystack.size(), len2 = needle.size();
+    if (len2 == 0) {
+      return 0;
+    }
+
+    for (int i = 0; i <= len1 - len2; i++) {
+      int j = 0;
+      while (j < len2 && haystack[i + j] == needle[j]) {
+        j++;
+      }
+      if (j == len2) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  // kmp 算法
   int strStr(string haystack, string needle) {
     int len1 = haystack.size(), len2 = needle.size();
 
